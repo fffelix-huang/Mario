@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export class PlayerController extends cc.Component {
+export default class PlayerController extends cc.Component {
 
     @property()
     playerSpeed: number = 300;
@@ -29,7 +29,6 @@ export class PlayerController extends cc.Component {
 
         this._physicManager = cc.director.getPhysicsManager();
         this._physicManager.enabled = true;
-        this._physicManager.gravity = cc.v2(0, -200);
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -41,9 +40,9 @@ export class PlayerController extends cc.Component {
 
     update(deltaTime: number) {
         this.node.x += this.playerSpeed * this._direction * deltaTime;
-        this.node.scaleX = (this._direction >= 0) ? 1 : -1;
+        this.node.scaleX = (this._direction >= 0) ? 2 : -2;
 
-        if(this._rigidBody.linearVelocity.y != 0) {
+        if(Math.abs(this._rigidBody.linearVelocity.y) > 1e-3) {
             this._fallDown = true;
         } else {
             this._fallDown = false;
