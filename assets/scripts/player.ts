@@ -13,7 +13,14 @@ export default class PlayerController extends cc.Component {
     @property()
     playerSpeed: number = 300;
 
+    @property(cc.SpriteFrame)
+    idleFrame: cc.SpriteFrame = null;
+
+    @property(cc.SpriteFrame)
+    jumpFrame: cc.SpriteFrame = null;
+
     private _rigidBody: cc.RigidBody = null;
+    private _animation: cc.Animation = null;
 
     private _physicManager: cc.PhysicsManager = null
 
@@ -26,6 +33,8 @@ export default class PlayerController extends cc.Component {
 
     onLoad() {
         this._rigidBody = this.node.getComponent(cc.RigidBody);
+
+        this._animation = this.node.getComponent(cc.Animation);
 
         this._physicManager = cc.director.getPhysicsManager();
         this._physicManager.enabled = true;
@@ -47,6 +56,8 @@ export default class PlayerController extends cc.Component {
         } else {
             this._fallDown = false;
         }
+
+        this.playAnimation();
     }
 
     public setDirection(direction: number) {
@@ -99,6 +110,19 @@ export default class PlayerController extends cc.Component {
     public playerJump(velocity: number) {
         if(!this._fallDown) {
             this._rigidBody.linearVelocity = cc.v2(0, velocity);
+        }
+    }
+
+    public playAnimation() {
+        if(this._fallDown && this._direction == 0) {
+            this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
+        } else {
+            if(this._direction == 0) {
+                this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
+                this._animation.stop();
+            } else if(!this._animation.getAnimationState("mario-walk").isPlaying) {
+                this._animation.play("mario-walk");
+            }
         }
     }
 
