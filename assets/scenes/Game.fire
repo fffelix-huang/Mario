@@ -87,10 +87,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 32
+        "__id__": 30
       },
       {
-        "__id__": 33
+        "__id__": 31
       }
     ],
     "_prefab": null,
@@ -521,7 +521,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "level1",
+    "_name": "Level-1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -757,13 +757,13 @@
         "__id__": 21
       },
       {
-        "__id__": 26
+        "__id__": 25
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 31
+        "__id__": 29
       }
     ],
     "_prefab": null,
@@ -832,9 +832,6 @@
       },
       {
         "__id__": 24
-      },
-      {
-        "__id__": 25
       }
     ],
     "_prefab": null,
@@ -955,16 +952,6 @@
     "_id": "24tG7veENK/bIlH7eTjutO"
   },
   {
-    "__type__": "43f85FajKJLQbq5tC+Wd/bW",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 21
-    },
-    "_enabled": true,
-    "_id": "83e9NM9gBONqLmRv8W73lK"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "RightBoundary",
     "_objFlags": 0,
@@ -975,16 +962,13 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 26
+      },
+      {
         "__id__": 27
       },
       {
         "__id__": 28
-      },
-      {
-        "__id__": 29
-      },
-      {
-        "__id__": 30
       }
     ],
     "_prefab": null,
@@ -1040,7 +1024,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 26
+      "__id__": 25
     },
     "_enabled": true,
     "_materials": [
@@ -1055,7 +1039,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 26
+      "__id__": 25
     },
     "_enabled": true,
     "_type": 1,
@@ -1080,7 +1064,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 26
+      "__id__": 25
     },
     "_enabled": true,
     "tag": 0,
@@ -1100,16 +1084,6 @@
       "height": 480
     },
     "_id": "15LM3gjnlAV5bqxT/LaYCJ"
-  },
-  {
-    "__type__": "43f85FajKJLQbq5tC+Wd/bW",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 26
-    },
-    "_enabled": true,
-    "_id": "faVm8abDhE6LOvlE2tBM+U"
   },
   {
     "__type__": "cc.TiledMap",
