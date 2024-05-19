@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class PlayerController extends cc.Component {
+export default class Player extends cc.Component {
 
     @property()
     playerSpeed: number = 300;
@@ -30,6 +30,8 @@ export default class PlayerController extends cc.Component {
     private _rightKeyPressed: boolean = false;
 
     private _fallDown: boolean = false;
+
+    public numLives: number = 3;
 
     onLoad() {
         this._rigidBody = this.node.getComponent(cc.RigidBody);
@@ -130,5 +132,12 @@ export default class PlayerController extends cc.Component {
     public reborn(rebornPosition: cc.Vec3) {
         this.node.position = rebornPosition;
         this._rigidBody.linearVelocity = cc.v2(0, 0);
+    }
+
+    onBeginContact(contact, self, other) {
+        if(other.node.group == "Enemy") {
+            this.numLives--;
+            this.reborn(cc.v3(-449.466, 285.328, 0));
+        }
     }
 }
