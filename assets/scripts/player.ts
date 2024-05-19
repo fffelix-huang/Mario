@@ -33,6 +33,7 @@ export default class PlayerController extends cc.Component {
 
     onLoad() {
         this._rigidBody = this.node.getComponent(cc.RigidBody);
+        this._rigidBody.fixedRotation = true;
 
         this._animation = this.node.getComponent(cc.Animation);
 
