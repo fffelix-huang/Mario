@@ -136,8 +136,21 @@ export default class Player extends cc.Component {
 
     onBeginContact(contact, self, other) {
         if(other.node.group == "Enemy") {
-            this.numLives--;
-            this.reborn(cc.v3(-449.466, 285.328, 0));
+            let normal = contact.getWorldManifold().normal;
+
+            if(normal.y < 0) {
+                this._rigidBody.linearVelocity.y = 900;
+                // [TODO] Add score
+            } else {
+                this.numLives--;
+                
+                if(this.numLives == 0) {
+                    // [TODO] Handle Died
+                    this.node.destroy();
+                }
+
+                this.reborn(cc.v3(-449.466, 285.328, 0));
+            }
         }
     }
 }

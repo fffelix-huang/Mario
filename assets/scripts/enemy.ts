@@ -33,6 +33,15 @@ export default class Enemy extends cc.Component {
     }
 
     update(deltaTime: number) {
+        if(Math.abs(this._rigidBody.linearVelocity.y) > 1e-3) {
+            this._direction = 0;
+            return;
+        }
+
+        if(this._direction == 0) {
+            this._direction = 1;
+        }
+
         this._timeElapsed += deltaTime;
 
         if(this._timeElapsed >= this.changeDirectionInterval) {
@@ -46,6 +55,14 @@ export default class Enemy extends cc.Component {
     onBeginContact(contact, self, other) {
         if(other.node.group == "Wall") {
             this._direction *= -1;
+        }
+
+        if(other.node.name == "Player") {
+            let normal = contact.getWorldManifold().normal;
+
+            if(normal.y > 0) {
+                this.node.destroy();
+            }
         }
     }
 }

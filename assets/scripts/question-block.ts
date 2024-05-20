@@ -13,6 +13,9 @@ export default class QuestionBlock extends cc.Component {
     @property(cc.SpriteFrame)
     disabledFrame: cc.SpriteFrame = null;
 
+    @property(cc.Prefab)
+    enemyPrefab: cc.Prefab = null;
+
     private _physicManager: cc.PhysicsManager = null;
     private _animation: cc.Animation = null;
     
@@ -55,10 +58,17 @@ export default class QuestionBlock extends cc.Component {
 
     handleHitFromBelow() {
         // Stop animation
-        this._animationEnabled = false;
-        this._animation.stop();
-        this.getComponent(cc.Sprite).spriteFrame = this.disabledFrame;
+        if(this._animationEnabled) {
+            this._animationEnabled = false;
+            this._animation.stop();
+            this.getComponent(cc.Sprite).spriteFrame = this.disabledFrame;
 
-        // [TODO] Generate enemy
+            let enemyNode = cc.instantiate(this.enemyPrefab);
+            enemyNode.parent = cc.find("Canvas");
+            
+            let initialPosition = cc.v2(this.node.x, this.node.y + this.node.height * this.node.scaleY);
+            enemyNode.setPosition(initialPosition);
+            enemyNode.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 150);
+        }
     }
 }

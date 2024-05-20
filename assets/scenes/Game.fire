@@ -966,6 +966,9 @@
     "disabledFrame": {
       "__uuid__": "040f1d65-f893-4c3f-9725-ed115153388c"
     },
+    "enemyPrefab": {
+      "__uuid__": "a08d33cc-82f3-415f-97f5-e8dd6ff0461f"
+    },
     "_id": "149ZwbcHZAd42a34Ty/BFy"
   },
   {
@@ -1365,8 +1368,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -436.247,
-        290.993,
+        -450,
+        300,
         0,
         0,
         0,
@@ -1500,9 +1503,6 @@
     "_enabled": true,
     "playerNode": {
       "__id__": 6
-    },
-    "cameraNode": {
-      "__id__": 3
     },
     "_id": "bfa41TeQlGmpUKqrlfCMT5"
   },
