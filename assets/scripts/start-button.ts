@@ -13,7 +13,7 @@ export default class StartButton extends cc.Component {
     @property(cc.Button)
     private _button: cc.Button = null;
 
-    onLoad () {
+    onLoad() {
         this._button = this.node.getComponent(cc.Button);
 
         if(!this._button) {
@@ -28,13 +28,13 @@ export default class StartButton extends cc.Component {
         this._button.clickEvents.push(clickEventHandler);
     }
 
-    start () {
+    start() {
     }
 
     loadGameScene() {
         cc.log("clicked");
-        cc.director.loadScene("Game");
+        cc.director.loadScene("Level-1");
     }
 
-    // update (dt) {}
+    // update(dt) {}
 }
