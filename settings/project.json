@@ -1,5 +1,5 @@
 {
-  "start-scene": "b0ded924-795c-40ea-a7fd-c94bb44de8c5",
+  "start-scene": "9e1f8736-7b91-468b-bb3b-b3ba8cdd97ca",
   "group-list": [
     "default",
     "Wall",
@@ -14,13 +14,14 @@
     ],
     [
       true,
-      true,
+      false,
       true
     ],
     [
       true,
       true,
-      true
+      false,
+      false
     ],
     [
       false,

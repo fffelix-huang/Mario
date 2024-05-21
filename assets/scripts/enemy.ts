@@ -29,7 +29,6 @@ export default class Enemy extends cc.Component {
     }
 
     start() {
-
     }
 
     update(deltaTime: number) {

@@ -23,6 +23,8 @@ export default class Camera extends cc.Component {
 
     update(deltaTime: number) {
        this.node.x = this.playerNode.x;
+       this.node.y = this.playerNode.y + 200;
        this.backgroundNode.x = this.node.x;
+       this.backgroundNode.setPosition(this.node.position);
     }
 }

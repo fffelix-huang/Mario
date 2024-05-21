@@ -21,6 +21,7 @@ export default class Player extends cc.Component {
 
     private _rigidBody: cc.RigidBody = null;
     private _animation: cc.Animation = null;
+    private _collider: cc.Collider = null;
 
     private _physicManager: cc.PhysicsManager = null
 
@@ -31,6 +32,9 @@ export default class Player extends cc.Component {
 
     private _fallDown: boolean = false;
 
+    private _invincible: boolean = false;
+    private _onDeath: boolean = false;
+
     public numLives: number = 3;
 
     onLoad() {
@@ -39,11 +43,17 @@ export default class Player extends cc.Component {
 
         this._animation = this.node.getComponent(cc.Animation);
 
+        this._collider = this.node.getComponent(cc.Collider);
+        this._collider.enabled = true;
+
         this._physicManager = cc.director.getPhysicsManager();
         this._physicManager.enabled = true;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
+        this.reborn();
+        this._invincible = true;
     }
 
     start() {
@@ -51,8 +61,10 @@ export default class Player extends cc.Component {
     }
 
     update(deltaTime: number) {
-        this.node.x += this.playerSpeed * this._direction * deltaTime;
-        this.node.scaleX = (this._direction >= 0) ? 2 : -2;
+        if(!this._onDeath) {
+            this.node.x += this.playerSpeed * this._direction * deltaTime;
+            this.node.scaleX = (this._direction >= 0) ? 2 : -2;
+        }
 
         if(Math.abs(this._rigidBody.linearVelocity.y) > 1e-3) {
             this._fallDown = true;
@@ -117,6 +129,12 @@ export default class Player extends cc.Component {
     }
 
     public playAnimation() {
+        if(this._onDeath) {
+            this._animation.stop();
+            this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
+            return;
+        }
+
         if(this._fallDown && this._direction == 0) {
             this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
         } else {
@@ -129,28 +147,53 @@ export default class Player extends cc.Component {
         }
     }
 
-    public reborn(rebornPosition: cc.Vec3) {
-        this.node.position = rebornPosition;
+    public reborn() {
+        let initialPositionNode = cc.find("Canvas/InitialPosition");
+
         this._rigidBody.linearVelocity = cc.v2(0, 0);
+
+        this.node.setPosition(initialPositionNode.position);
+    }
+
+    public handleLoseLife() {
+        this._onDeath = true;
+        this._collider.enabled = false;
+        this._rigidBody.enabled = false;
+        this._rigidBody.linearVelocity = cc.v2(0, 500);
+
+        this.playAnimation();
+
+        this.scheduleOnce(() => {
+            this.numLives--;
+            this._invincible = true;
+
+            if(this.numLives == 0) {
+                // [TODO] No lives
+            } else {
+                this.reborn();
+            }
+
+            this._onDeath = false;
+            this._collider.enabled = true;
+            this._rigidBody.enabled = true;
+        }, 1);
     }
 
     onBeginContact(contact, self, other) {
         if(other.node.group == "Enemy") {
             let normal = contact.getWorldManifold().normal;
+            contact.disabled = true;
 
             if(normal.y < 0) {
-                this._rigidBody.linearVelocity.y = 900;
+                this._rigidBody.linearVelocity = cc.v2(0, 400);
+                cc.log(this._rigidBody.linearVelocity.y);
                 // [TODO] Add score
             } else {
-                this.numLives--;
-                
-                if(this.numLives == 0) {
-                    // [TODO] Handle Died
-                    this.node.destroy();
-                }
-
-                this.reborn(cc.v3(-449.466, 285.328, 0));
+                this.handleLoseLife();
             }
         }
+    }
+
+    onEndContact(contact, self, other) {
     }
 }
