@@ -126,6 +126,9 @@
     "_enabled": true,
     "enemySpeed": 100,
     "changeDirectionInterval": 5,
+    "deadFrame": {
+      "__uuid__": "462f1f22-c56f-4b38-abca-ba66dd017491"
+    },
     "_id": ""
   },
   {
