@@ -10,15 +10,19 @@ import Camera from "./camera";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Live extends cc.Component {
+export default class Score extends cc.Component {
 
     @property(cc.Node)
     cameraNode: cc.Node = null;
 
     private _camera: Camera = null;
 
+    private _label: cc.Label = null;
+
     onLoad() {
         this._camera = this.cameraNode.getComponent(Camera);
+
+        this._label = this.node.getComponent(cc.Label);
     }
 
     start() {
@@ -26,7 +30,7 @@ export default class Live extends cc.Component {
 
     update() {
         // Update position
-        this.node.x = this.cameraNode.x - 450;
-        this.node.y = this.cameraNode.y + 300;
+        this.node.x = this.cameraNode.x + 320;
+        this.node.y = this.cameraNode.y + 270;
     }
 }

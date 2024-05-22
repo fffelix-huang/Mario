@@ -36,6 +36,7 @@ export default class Player extends cc.Component {
     private _onDeath: boolean = false;
 
     public numLives: number = 3;
+    public numScore: number = 0;
 
     onLoad() {
         this._rigidBody = this.node.getComponent(cc.RigidBody);
@@ -187,7 +188,7 @@ export default class Player extends cc.Component {
             if(normal.y < 0) {
                 this._rigidBody.linearVelocity = cc.v2(0, 400);
                 cc.log(this._rigidBody.linearVelocity.y);
-                // [TODO] Add score
+                this.numScore += 50;
             } else {
                 this.handleLoseLife();
             }
