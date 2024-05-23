@@ -196,7 +196,7 @@ export default class Player extends cc.Component {
     }
 
     onBeginContact(contact, self, other) {
-        if(other.node.group == "Enemy") {
+        if(other.node.group == "Enemy" || other.node.group == "EnemyFly") {
             let normal = contact.getWorldManifold().normal;
             contact.disabled = true;
 

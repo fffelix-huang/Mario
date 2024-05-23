@@ -61,7 +61,7 @@ export default class Enemy extends cc.Component {
 
     handleDead() {
         this._onDead = true;
-        this.node.group == "Transparent";
+        this.node.group = "Transparent";
         this.node.getComponent(cc.Sprite).spriteFrame = this.deadFrame;
 
         this.scheduleOnce(() => {

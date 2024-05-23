@@ -17,7 +17,7 @@
         "__id__": 2
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -103,15 +103,18 @@
       },
       {
         "__id__": 11
+      },
+      {
+        "__id__": 74
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 74
+        "__id__": 80
       },
       {
-        "__id__": 75
+        "__id__": 81
       }
     ],
     "_prefab": null,
@@ -2816,6 +2819,202 @@
       "height": 588
     },
     "_id": "cfAqjP2xtBvKR1XOKURinh"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "EnemyFly",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 75
+      },
+      {
+        "__id__": 76
+      },
+      {
+        "__id__": 77
+      },
+      {
+        "__id__": 78
+      },
+      {
+        "__id__": 79
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 20,
+      "height": 24
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 4,
+    "groupIndex": 4,
+    "_id": "262HuNB6pHqq8lJpYUN+3A"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 74
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "3e2ed35a-a023-4ac3-aa4d-5bf93b3168d1"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": {
+      "__uuid__": "f31450f2-467b-4f08-8d1e-d0a76e4df3d7"
+    },
+    "_id": "31eO7j0P5PwqXehO71lRYf"
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 74
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "a90d38c8-bbc4-48f6-b7d9-b3d8e1b209a3"
+    },
+    "_clips": [
+      {
+        "__uuid__": "a90d38c8-bbc4-48f6-b7d9-b3d8e1b209a3"
+      }
+    ],
+    "playOnLoad": false,
+    "_id": "e3EUOVvg5Ao7tDqLGqV7l8"
+  },
+  {
+    "__type__": "cc.RigidBody",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 74
+    },
+    "_enabled": true,
+    "_type": 1,
+    "_allowSleep": true,
+    "_gravityScale": 1,
+    "_linearDamping": 0,
+    "_angularDamping": 0,
+    "_linearVelocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_angularVelocity": 0,
+    "_fixedRotation": false,
+    "enabledContactListener": true,
+    "bullet": false,
+    "awakeOnLoad": true,
+    "_id": "4et90nZsFElp9eUXJOVfXs"
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 74
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -4
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 20,
+      "height": 16
+    },
+    "_id": "208xCmjSBMVpptUjPlwFnG"
+  },
+  {
+    "__type__": "c6834ZBda9E27/0isMZn8kE",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 74
+    },
+    "_enabled": true,
+    "startX": 50,
+    "startY": 150,
+    "endX": 50,
+    "endY": -150,
+    "animationDelay": 2,
+    "deadFrame": {
+      "__uuid__": "c5a5c565-72ba-4656-a5e6-224877961cc3"
+    },
+    "_id": "effRv8655J97J3LwCmwBsW"
   },
   {
     "__type__": "cc.Canvas",

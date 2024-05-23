@@ -4,12 +4,15 @@
     "default",
     "Wall",
     "Enemy",
-    "Transparent"
+    "Transparent",
+    "EnemyFly"
   ],
   "collision-matrix": [
     [
       true,
       true,
+      true,
+      null,
       true
     ],
     [
@@ -24,6 +27,13 @@
       false
     ],
     [
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      true,
       false,
       false,
       false,
@@ -55,5 +65,6 @@
     "audience": {
       "enable": false
     }
-  }
+  },
+  "last-module-event-record-time": 1716460425275
 }
