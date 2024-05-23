@@ -8,29 +8,23 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class StartButton extends cc.Component {
+export default class BackButton extends cc.Component {
 
     @property(cc.Button)
-    private _button: cc.Button = null;
+    private _button: cc.Button;
 
     onLoad() {
         this._button = this.node.getComponent(cc.Button);
 
         const clickEventHandler = new cc.Component.EventHandler();
         clickEventHandler.target = this.node;
-        clickEventHandler.component = "start-button"
+        clickEventHandler.component = "back-button";
         clickEventHandler.handler = "loadGameScene";
 
         this._button.clickEvents.push(clickEventHandler);
     }
 
-    start() {
-    }
-
     loadGameScene() {
-        cc.log("clicked");
-        cc.director.loadScene("Level-1");
+        cc.director.loadScene("Menu");
     }
-
-    // update(dt) {}
 }

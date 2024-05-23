@@ -7,6 +7,8 @@
 
 const {ccclass, property} = cc._decorator;
 
+import GameResultManager from "./game-result-manager";
+
 @ccclass
 export default class Player extends cc.Component {
 
@@ -18,6 +20,11 @@ export default class Player extends cc.Component {
 
     @property(cc.SpriteFrame)
     jumpFrame: cc.SpriteFrame = null;
+
+    @property(cc.Node)
+    gameResultManagerNode: cc.Node = null;
+
+    private _gameResultManager: GameResultManager;
 
     private _rigidBody: cc.RigidBody = null;
     private _animation: cc.Animation = null;
@@ -49,6 +56,8 @@ export default class Player extends cc.Component {
 
         this._physicManager = cc.director.getPhysicsManager();
         this._physicManager.enabled = true;
+
+        this._gameResultManager = this.gameResultManagerNode.getComponent(GameResultManager);
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -169,7 +178,8 @@ export default class Player extends cc.Component {
             this._invincible = true;
 
             if(this.numLives == 0) {
-                // [TODO] No lives
+                this._gameResultManager.setGameOver("You Lose!");
+                this.node.active = false;
             } else {
                 this.reborn();
             }
@@ -180,6 +190,11 @@ export default class Player extends cc.Component {
         }, 1);
     }
 
+    public handleGameWin() {
+        this.node.active = false;
+        this._gameResultManager.setGameOver("You Win!");
+    }
+
     onBeginContact(contact, self, other) {
         if(other.node.group == "Enemy") {
             let normal = contact.getWorldManifold().normal;
@@ -187,11 +202,14 @@ export default class Player extends cc.Component {
 
             if(normal.y < 0) {
                 this._rigidBody.linearVelocity = cc.v2(0, 400);
-                cc.log(this._rigidBody.linearVelocity.y);
                 this.numScore += 50;
             } else {
                 this.handleLoseLife();
             }
+        }
+
+        if(other.node.name == "Flag") {
+            this.handleGameWin();
         }
     }
 
