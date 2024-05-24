@@ -179,9 +179,6 @@ export default class Player extends cc.Component {
     }
 
     public reborn() {
-        cc.audioEngine.stopAll();
-        cc.audioEngine.playMusic(this.bgmAudio, true);
-
         let initialPositionNode = cc.find("Canvas/InitialPosition");
 
         this._rigidBody.linearVelocity = cc.v2(0, 0);
@@ -195,7 +192,6 @@ export default class Player extends cc.Component {
         this._rigidBody.enabled = false;
         this._rigidBody.linearVelocity = cc.v2(0, 500);
 
-        cc.audioEngine.stopAll();
         cc.audioEngine.playEffect(this.dieAudio, false);
 
         this.playAnimation();
