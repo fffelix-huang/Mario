@@ -24,6 +24,18 @@ export default class Player extends cc.Component {
     @property(cc.Node)
     gameResultManagerNode: cc.Node = null;
 
+    @property(cc.AudioClip)
+    bgmAudio: cc.AudioClip = null;
+
+    @property(cc.AudioClip)
+    dieAudio: cc.AudioClip = null;
+
+    @property(cc.AudioClip)
+    killAudio: cc.AudioClip = null;
+
+    @property(cc.AudioClip)
+    jumpAudio: cc.AudioClip = null;
+
     private _gameResultManager: GameResultManager;
 
     private _rigidBody: cc.RigidBody = null;
@@ -67,7 +79,8 @@ export default class Player extends cc.Component {
     }
 
     start() {
-        ;
+        cc.audioEngine.stopAll();
+        cc.audioEngine.playMusic(this.bgmAudio, true);
     }
 
     update(deltaTime: number) {
@@ -135,6 +148,8 @@ export default class Player extends cc.Component {
     public playerJump(velocity: number) {
         if(!this._fallDown) {
             this._rigidBody.linearVelocity = cc.v2(0, velocity);
+            
+            cc.audioEngine.playEffect(this.jumpAudio, false);
         }
     }
 
@@ -171,6 +186,8 @@ export default class Player extends cc.Component {
         this._rigidBody.enabled = false;
         this._rigidBody.linearVelocity = cc.v2(0, 500);
 
+        cc.audioEngine.playEffect(this.dieAudio, false);
+
         this.playAnimation();
 
         this.scheduleOnce(() => {
@@ -190,6 +207,13 @@ export default class Player extends cc.Component {
         }, 1);
     }
 
+    public handleKillEnemy() {
+        this._rigidBody.linearVelocity = cc.v2(0, 400);
+        this.numScore += 50;
+
+        cc.audioEngine.playEffect(this.killAudio, false);
+    }
+
     public handleGameWin() {
         this.node.active = false;
         this._gameResultManager.setGameOver("You Win!");
@@ -201,8 +225,7 @@ export default class Player extends cc.Component {
             contact.disabled = true;
 
             if(normal.y < 0) {
-                this._rigidBody.linearVelocity = cc.v2(0, 400);
-                this.numScore += 50;
+                this.handleKillEnemy();
             } else {
                 this.handleLoseLife();
             }

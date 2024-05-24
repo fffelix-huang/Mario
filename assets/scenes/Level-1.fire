@@ -459,6 +459,18 @@
     "gameResultManagerNode": {
       "__id__": 11
     },
+    "bgmAudio": {
+      "__uuid__": "4c06332c-1da5-437c-bb54-7aade5fc0f1b"
+    },
+    "dieAudio": {
+      "__uuid__": "8265afee-2986-4211-81e4-70e79e6f53fd"
+    },
+    "killAudio": {
+      "__uuid__": "9b0ff7ae-5dad-4a9d-ab39-3ccb992f9e29"
+    },
+    "jumpAudio": {
+      "__uuid__": "3da2dac3-e1c8-4aca-96e9-019e41a848b1"
+    },
     "_id": "97ZPjRG0tKkLNTnnD/1iQ4"
   },
   {
