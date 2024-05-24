@@ -36,6 +36,12 @@ export default class Player extends cc.Component {
     @property(cc.AudioClip)
     jumpAudio: cc.AudioClip = null;
 
+    @property(cc.AudioClip)
+    winAudio: cc.AudioClip = null;
+
+    @property(cc.AudioClip)
+    loseAudio: cc.AudioClip = null;
+
     private _gameResultManager: GameResultManager;
 
     private _rigidBody: cc.RigidBody = null;
@@ -173,6 +179,9 @@ export default class Player extends cc.Component {
     }
 
     public reborn() {
+        cc.audioEngine.stopAll();
+        cc.audioEngine.playMusic(this.bgmAudio, true);
+
         let initialPositionNode = cc.find("Canvas/InitialPosition");
 
         this._rigidBody.linearVelocity = cc.v2(0, 0);
@@ -186,6 +195,7 @@ export default class Player extends cc.Component {
         this._rigidBody.enabled = false;
         this._rigidBody.linearVelocity = cc.v2(0, 500);
 
+        cc.audioEngine.stopAll();
         cc.audioEngine.playEffect(this.dieAudio, false);
 
         this.playAnimation();
@@ -195,6 +205,9 @@ export default class Player extends cc.Component {
             this._invincible = true;
 
             if(this.numLives == 0) {
+                cc.audioEngine.stopAll();
+                cc.audioEngine.playEffect(this.loseAudio, false);
+
                 this._gameResultManager.setGameOver("You Lose!");
                 this.node.active = false;
             } else {
@@ -216,6 +229,10 @@ export default class Player extends cc.Component {
 
     public handleGameWin() {
         this.node.active = false;
+
+        cc.audioEngine.stopAll();
+        cc.audioEngine.playEffect(this.winAudio, false);
+
         this._gameResultManager.setGameOver("You Win!");
     }
 

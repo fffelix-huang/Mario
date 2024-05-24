@@ -471,6 +471,12 @@
     "jumpAudio": {
       "__uuid__": "3da2dac3-e1c8-4aca-96e9-019e41a848b1"
     },
+    "winAudio": {
+      "__uuid__": "44321329-6e50-4cb1-ba00-9eec5cc05756"
+    },
+    "loseAudio": {
+      "__uuid__": "d42d6cdf-8e9f-4002-ba02-b2da3f1fc593"
+    },
     "_id": "97ZPjRG0tKkLNTnnD/1iQ4"
   },
   {
