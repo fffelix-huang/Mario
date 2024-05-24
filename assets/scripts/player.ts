@@ -208,6 +208,12 @@ export default class Player extends cc.Component {
             }
         }
 
+        if(other.node.group == "Spike") {
+            contact.disabled = true;
+
+            this.handleLoseLife();
+        }
+
         if(other.node.name == "Flag") {
             this.handleGameWin();
         }

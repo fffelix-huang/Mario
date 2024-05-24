@@ -5,7 +5,8 @@
     "Wall",
     "Enemy",
     "Transparent",
-    "EnemyFly"
+    "EnemyFly",
+    "Spike"
   ],
   "collision-matrix": [
     [
@@ -13,6 +14,7 @@
       true,
       true,
       null,
+      true,
       true
     ],
     [
@@ -34,6 +36,14 @@
     ],
     [
       true,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      true,
+      false,
       false,
       false,
       false,
