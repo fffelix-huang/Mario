@@ -8,6 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 import GameResultManager from "./game-result-manager";
+import Timer from "./timer";
 
 @ccclass
 export default class Player extends cc.Component {
@@ -23,6 +24,11 @@ export default class Player extends cc.Component {
 
     @property(cc.Node)
     gameResultManagerNode: cc.Node = null;
+
+    @property(cc.Node)
+    timerNode: cc.Node = null;
+
+    private _timer: Timer;
 
     @property(cc.AudioClip)
     bgmAudio: cc.AudioClip = null;
@@ -77,6 +83,8 @@ export default class Player extends cc.Component {
 
         this._gameResultManager = this.gameResultManagerNode.getComponent(GameResultManager);
 
+        this._timer = this.timerNode.getComponent(Timer);
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
@@ -90,6 +98,11 @@ export default class Player extends cc.Component {
     }
 
     update(deltaTime: number) {
+        // Check timeout
+        if(this._timer.timeout()) {
+            this.handleGameLose();
+        }
+
         if(!this._onDeath) {
             this.node.x += this.playerSpeed * this._direction * deltaTime;
             this.node.scaleX = (this._direction >= 0) ? 2 : -2;
@@ -201,11 +214,7 @@ export default class Player extends cc.Component {
             this._invincible = true;
 
             if(this.numLives == 0) {
-                cc.audioEngine.stopAll();
-                cc.audioEngine.playEffect(this.loseAudio, false);
-
-                this._gameResultManager.setGameOver("You Lose!");
-                this.node.active = false;
+                this.handleGameLose();
             } else {
                 this.reborn();
             }
@@ -230,6 +239,14 @@ export default class Player extends cc.Component {
         cc.audioEngine.playEffect(this.winAudio, false);
 
         this._gameResultManager.setGameOver("You Win!");
+    }
+
+    public handleGameLose() {
+        cc.audioEngine.stopAll();
+        cc.audioEngine.playEffect(this.loseAudio, false);
+
+        this._gameResultManager.setGameOver("You Lose!");
+        this.node.active = false;
     }
 
     onBeginContact(contact, self, other) {

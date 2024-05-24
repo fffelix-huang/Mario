@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import Timer from "./timer";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -20,11 +22,18 @@ export default class GameResultManager extends cc.Component {
     gameResultLabelNode: cc.Node = null;
 
     private _gameResultLabel: cc.Label;
+
+    @property(cc.Node)
+    timerNode: cc.Node = null;
+
+    private _timer: Timer;
     
     onLoad() {
         this.node.active = false;
 
         this._gameResultLabel = this.gameResultLabelNode.getComponent(cc.Label);
+
+        this._timer = this.timerNode.getComponent(Timer);
     }
 
     update() {
@@ -32,7 +41,8 @@ export default class GameResultManager extends cc.Component {
     }
 
     setGameOver(result: string) {
-        cc.log("Set Game Over: " + result);
+        this._timer.stopTimer();
+
         this._gameResultLabel.string = result;
         this.node.active = true;
         this.gameResultLabelNode.active = true;
