@@ -328,6 +328,12 @@ export default class Player extends cc.Component {
             let normal = contact.getWorldManifold().normal;
             contact.disabled = true;
 
+            if(other.node.name == "Flower") {
+                if(!this._invincible) {
+                    this.handleLoseLife();
+                }
+            }
+
             if(normal.y < 0) {
                 this.handleKillEnemy();
             } else {
