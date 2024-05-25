@@ -20,7 +20,13 @@ export default class Player extends cc.Component {
     idleFrame: cc.SpriteFrame = null;
 
     @property(cc.SpriteFrame)
+    bigIdleFrame: cc.SpriteFrame = null;
+
+    @property(cc.SpriteFrame)
     jumpFrame: cc.SpriteFrame = null;
+
+    @property(cc.SpriteFrame)
+    bigJumpFrame: cc.SpriteFrame = null;
 
     @property(cc.Node)
     gameResultManagerNode: cc.Node = null;
@@ -51,11 +57,13 @@ export default class Player extends cc.Component {
     @property(cc.Node)
     rebornPosition: cc.Node = null;
 
+    private _emptySpriteFrame: cc.SpriteFrame = null;
+
     private _gameResultManager: GameResultManager;
 
     private _rigidBody: cc.RigidBody = null;
     private _animation: cc.Animation = null;
-    private _collider: cc.Collider = null;
+    private _collider: cc.PhysicsBoxCollider = null;
 
     private _physicManager: cc.PhysicsManager = null
 
@@ -72,13 +80,16 @@ export default class Player extends cc.Component {
     public numLives: number = 3;
     public numScore: number = 0;
 
+    public powerUp: boolean = false;
+    private _timeElapsed: number = 0;
+
     onLoad() {
         this._rigidBody = this.node.getComponent(cc.RigidBody);
         this._rigidBody.fixedRotation = true;
 
         this._animation = this.node.getComponent(cc.Animation);
 
-        this._collider = this.node.getComponent(cc.Collider);
+        this._collider = this.node.getComponent(cc.PhysicsBoxCollider);
         this._collider.enabled = true;
 
         this._physicManager = cc.director.getPhysicsManager();
@@ -88,11 +99,12 @@ export default class Player extends cc.Component {
 
         this._timer = this.timerNode.getComponent(TimerCounter);
 
+        this._emptySpriteFrame = new cc.SpriteFrame;
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         this.reborn();
-        this._invincible = true;
     }
 
     start() {
@@ -178,20 +190,50 @@ export default class Player extends cc.Component {
     public playAnimation() {
         if(this._onDeath) {
             this._animation.stop();
-            this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
+            if(!this.powerUp) {
+                this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
+            } else {
+                this.getComponent(cc.Sprite).spriteFrame = this.bigJumpFrame;
+            }
             return;
         }
 
         if(this._fallDown && this._direction == 0) {
-            this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
+            if(!this.powerUp) {
+                this.getComponent(cc.Sprite).spriteFrame = this.jumpFrame;
+            } else {
+                this.getComponent(cc.Sprite).spriteFrame = this.bigJumpFrame;
+            }
         } else {
             if(this._direction == 0) {
-                this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
+                if(!this.powerUp) {
+                    this.getComponent(cc.Sprite).spriteFrame = this.idleFrame;
+                } else {
+                    this.getComponent(cc.Sprite).spriteFrame = this.bigIdleFrame;
+                }
                 this._animation.stop();
-            } else if(!this._animation.getAnimationState("mario-walk").isPlaying) {
+            } else if(!this.powerUp && !this._animation.getAnimationState("mario-walk").isPlaying) {
                 this._animation.play("mario-walk");
+            } else if(this.powerUp && !this._animation.getAnimationState("big-mario-walk").isPlaying) {
+                this._animation.play("big-mario-walk");
             }
         }
+    }
+
+    public updateCollisionBox() {
+        if(!this.powerUp) {
+            this._collider.size = cc.size(16, 16);
+            this._collider.offset = cc.v2(0, 0);
+        } else {
+            this._collider.size = cc.size(16, 26);
+            this._collider.offset = cc.v2(0, 0);
+        }
+        this._collider.apply();
+    }
+
+    public handlePowerUp() {
+        this.powerUp = true;
+        this.updateCollisionBox();
     }
 
     public reborn() {
@@ -200,9 +242,33 @@ export default class Player extends cc.Component {
         this._rigidBody.linearVelocity = cc.v2(0, 0);
 
         this.node.setPosition(initialPositionNode.position);
+        this.powerUp = false;
+        this.updateCollisionBox();
+    }
+
+    clearSpriteFrame() {
+        this.node.getComponent(cc.Sprite).spriteFrame = this._emptySpriteFrame;
     }
 
     public handleLoseLife() {
+        if(this.powerUp) {
+            this.powerUp = false;
+            this.updateCollisionBox();
+
+            this._invincible = true;
+
+            this.schedule(this.clearSpriteFrame, 0.2);
+
+            this.scheduleOnce(() => {
+                this._invincible = false;
+                this.node.active = true;
+
+                this.unschedule(this.clearSpriteFrame);
+            }, 3);
+
+            return;
+        }
+
         this._onDeath = true;
         this._collider.enabled = false;
         this._rigidBody.enabled = false;
@@ -260,7 +326,9 @@ export default class Player extends cc.Component {
             if(normal.y < 0) {
                 this.handleKillEnemy();
             } else {
-                this.handleLoseLife();
+                if(!this._invincible) {
+                    this.handleLoseLife();
+                }
             }
         }
 
@@ -279,6 +347,10 @@ export default class Player extends cc.Component {
 
             if(other.node.name == "Coin") {
                 this.numScore += 30;
+            }
+
+            if(other.node.name == "PowerMushroom") {
+                this.handlePowerUp();
             }
         }
     }

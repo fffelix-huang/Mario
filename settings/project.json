@@ -22,6 +22,10 @@
     [
       true,
       false,
+      true,
+      null,
+      null,
+      null,
       true
     ],
     [
@@ -53,7 +57,7 @@
     ],
     [
       true,
-      false,
+      true,
       false,
       false,
       false,
