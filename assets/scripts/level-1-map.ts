@@ -48,8 +48,8 @@ export default class MapController extends cc.Component {
     }
 
     initFlowers() {
-        let flowerX = [240, 400];
-        let flowerY = [-192, -192];
+        let flowerX = [240, 400, 560];
+        let flowerY = [-192, -192, -96];
 
         if(flowerX.length != flowerY.length) {
             cc.log("Flower prefab position error! Length doesn\'t match");
