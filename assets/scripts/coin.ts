@@ -10,9 +10,6 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Coin extends cc.Component {
 
-    @property(cc.SpriteFrame)
-    itemEffect: cc.SpriteFrame = null;
-
     @property(cc.AudioClip)
     soundEffect: cc.AudioClip = null;
 
@@ -41,7 +38,7 @@ export default class Coin extends cc.Component {
         this.onEat = true;
 
         this._animation.stop();
-        this.node.getComponent(cc.Sprite).spriteFrame = this.itemEffect;
+        this._animation.play("sparkle");
 
         cc.audioEngine.playEffect(this.soundEffect, false);
 
