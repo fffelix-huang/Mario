@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 import GameResultManager from "./game-result-manager";
-import Timer from "./timer";
+import TimerCounter from "./timer-counter";
 
 @ccclass
 export default class Player extends cc.Component {
@@ -28,7 +28,7 @@ export default class Player extends cc.Component {
     @property(cc.Node)
     timerNode: cc.Node = null;
 
-    private _timer: Timer;
+    private _timer: TimerCounter;
 
     @property(cc.AudioClip)
     bgmAudio: cc.AudioClip = null;
@@ -86,7 +86,7 @@ export default class Player extends cc.Component {
 
         this._gameResultManager = this.gameResultManagerNode.getComponent(GameResultManager);
 
-        this._timer = this.timerNode.getComponent(Timer);
+        this._timer = this.timerNode.getComponent(TimerCounter);
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);

@@ -5,7 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import Timer from "./timer";
+import TimerCounter from "./timer-counter";
 
 const {ccclass, property} = cc._decorator;
 
@@ -26,14 +26,14 @@ export default class GameResultManager extends cc.Component {
     @property(cc.Node)
     timerNode: cc.Node = null;
 
-    private _timer: Timer;
+    private _timer: TimerCounter;
     
     onLoad() {
         this.node.active = false;
 
         this._gameResultLabel = this.gameResultLabelNode.getComponent(cc.Label);
 
-        this._timer = this.timerNode.getComponent(Timer);
+        this._timer = this.timerNode.getComponent(TimerCounter);
     }
 
     update() {
