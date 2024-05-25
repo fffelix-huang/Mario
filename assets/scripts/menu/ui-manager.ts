@@ -20,7 +20,7 @@ export default class UIManager extends cc.Component {
         const startClickEventHandler = new cc.Component.EventHandler();
         startClickEventHandler.target = this.node;
         startClickEventHandler.component = "ui-manager"
-        startClickEventHandler.handler = "loadGameScene";
+        startClickEventHandler.handler = "loadLevelSelectScene";
 
         this.startButton.clickEvents.push(startClickEventHandler);
 
@@ -35,8 +35,8 @@ export default class UIManager extends cc.Component {
     start() {
     }
 
-    loadGameScene() {
-        cc.director.loadScene("Level-1");
+    loadLevelSelectScene() {
+        cc.director.loadScene("Level-Select");
     }
 
     loadLeaderboardScene() {
