@@ -16,6 +16,9 @@ export default class QuestionBlock extends cc.Component {
     @property(cc.Prefab)
     surprisePrefab: cc.Prefab = null;
 
+    @property(cc.Node)
+    prefabNodeParent: cc.Node = null;
+
     private _physicManager: cc.PhysicsManager = null;
     private _animation: cc.Animation = null;
     
@@ -64,7 +67,7 @@ export default class QuestionBlock extends cc.Component {
             this.getComponent(cc.Sprite).spriteFrame = this.disabledFrame;
 
             let surpriseNode = cc.instantiate(this.surprisePrefab);
-            surpriseNode.parent = cc.find("Canvas");
+            surpriseNode.parent = this.prefabNodeParent;
             
             let initialPosition = cc.v2(this.node.x, this.node.y + this.node.height * this.node.scaleY);
             surpriseNode.setPosition(initialPosition);

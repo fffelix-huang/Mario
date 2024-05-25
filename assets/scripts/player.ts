@@ -48,6 +48,9 @@ export default class Player extends cc.Component {
     @property(cc.AudioClip)
     loseAudio: cc.AudioClip = null;
 
+    @property(cc.Node)
+    rebornPosition: cc.Node = null;
+
     private _gameResultManager: GameResultManager;
 
     private _rigidBody: cc.RigidBody = null;
@@ -192,7 +195,7 @@ export default class Player extends cc.Component {
     }
 
     public reborn() {
-        let initialPositionNode = cc.find("Canvas/InitialPosition");
+        let initialPositionNode = this.rebornPosition;
 
         this._rigidBody.linearVelocity = cc.v2(0, 0);
 

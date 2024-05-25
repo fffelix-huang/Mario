@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "QuestionBlock",
+    "_name": "QBlockCoin",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -69,7 +69,7 @@
         1,
         2,
         2,
-        1
+        2
       ]
     },
     "_eulerAngles": {
@@ -199,6 +199,7 @@
       "__uuid__": "040f1d65-f893-4c3f-9725-ed115153388c"
     },
     "surprisePrefab": null,
+    "prefabNodeParent": null,
     "_id": ""
   },
   {
