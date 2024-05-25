@@ -332,7 +332,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Title",
+    "_name": "Logo",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2

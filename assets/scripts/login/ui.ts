@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class UIManager extends cc.Component {
+export default class UI extends cc.Component {
 
     @property(cc.Button)
     signInButton: cc.Button = null;

@@ -10,6 +10,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class BackButton extends cc.Component {
 
+    @property()
+    sceneName: string = "";
+
     private _button: cc.Button;
 
     onLoad() {
@@ -24,6 +27,6 @@ export default class BackButton extends cc.Component {
     }
 
     loadGameScene() {
-        cc.director.loadScene("Menu");
+        cc.director.loadScene(this.sceneName);
     }
 }
