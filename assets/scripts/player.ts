@@ -236,6 +236,10 @@ export default class Player extends cc.Component {
         this.updateCollisionBox();
     }
 
+    public handleHealthUp() {
+        this.numLives++;
+    }
+
     public reborn() {
         let initialPositionNode = this.rebornPosition;
 
@@ -243,6 +247,7 @@ export default class Player extends cc.Component {
 
         this.node.setPosition(initialPositionNode.position);
         this.powerUp = false;
+        this._invincible = false;
         this.updateCollisionBox();
     }
 
@@ -351,6 +356,10 @@ export default class Player extends cc.Component {
 
             if(other.node.name == "PowerMushroom") {
                 this.handlePowerUp();
+            }
+
+            if(other.node.name == "HealthMushroom") {
+                this.handleHealthUp();
             }
         }
     }
