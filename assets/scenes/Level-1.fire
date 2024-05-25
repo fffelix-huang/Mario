@@ -2392,7 +2392,7 @@
       "__uuid__": "040f1d65-f893-4c3f-9725-ed115153388c"
     },
     "surprisePrefab": {
-      "__uuid__": "cefd912c-1f60-445b-bdb0-799255307d34"
+      "__uuid__": "e907bf6c-f575-4a3a-ba70-9810010206b2"
     },
     "prefabNodeParent": {
       "__id__": 58
@@ -2663,7 +2663,7 @@
       "__id__": 59
     },
     "asset": {
-      "__uuid__": "cefd912c-1f60-445b-bdb0-799255307d34"
+      "__uuid__": "e907bf6c-f575-4a3a-ba70-9810010206b2"
     },
     "fileId": "",
     "sync": false

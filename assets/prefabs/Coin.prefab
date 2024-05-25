@@ -133,6 +133,9 @@
     "_clips": [
       {
         "__uuid__": "9c0af1df-cf4e-444e-a44d-022d46bd2cb1"
+      },
+      {
+        "__uuid__": "0c4f3a2e-d64b-4898-916d-9e4a6600cca9"
       }
     ],
     "playOnLoad": false,
@@ -197,9 +200,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "itemEffect": {
-      "__uuid__": "2ce32b67-2dd1-4c0f-ae08-397fa6582d57"
-    },
     "soundEffect": {
       "__uuid__": "416e0680-67ab-44ad-a2fb-71cb76cdcbd5"
     },
