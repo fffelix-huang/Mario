@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "QuestionBlock",
+    "_name": "Coin",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -48,7 +48,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 16,
+      "width": 10,
       "height": 16
     },
     "_anchorPoint": {
@@ -60,15 +60,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -160,
-        -80,
+        -278.521,
+        -152.914,
         0,
         0,
         0,
         0,
         1,
-        2,
-        2,
+        1,
+        1,
         1
       ]
     },
@@ -81,8 +81,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 1,
-    "groupIndex": 1,
+    "_groupIndex": 6,
+    "groupIndex": 6,
     "_id": ""
   },
   {
@@ -101,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "7152157d-d835-4691-8d2e-32ec08debac7"
+      "__uuid__": "b80ced0b-9d4f-41f6-89e4-7b29b7062283"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -120,6 +120,25 @@
     "_id": ""
   },
   {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "9c0af1df-cf4e-444e-a44d-022d46bd2cb1"
+    },
+    "_clips": [
+      {
+        "__uuid__": "9c0af1df-cf4e-444e-a44d-022d46bd2cb1"
+      }
+    ],
+    "playOnLoad": false,
+    "_id": ""
+  },
+  {
     "__type__": "cc.RigidBody",
     "_name": "",
     "_objFlags": 0,
@@ -127,7 +146,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
+    "_type": 0,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -165,40 +184,25 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 16,
+      "width": 10,
       "height": 16
     },
     "_id": ""
   },
   {
-    "__type__": "cc.Animation",
+    "__type__": "6d838/fEgFK+osXopN5p74X",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": null,
-    "_clips": [
-      {
-        "__uuid__": "a6920d79-f942-4748-9820-e6bf30c917ef"
-      }
-    ],
-    "playOnLoad": false,
-    "_id": ""
-  },
-  {
-    "__type__": "fe4a3KgP+1CpJxoq4mhTt4E",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
+    "itemEffect": {
+      "__uuid__": "2ce32b67-2dd1-4c0f-ae08-397fa6582d57"
     },
-    "_enabled": true,
-    "disabledFrame": {
-      "__uuid__": "040f1d65-f893-4c3f-9725-ed115153388c"
+    "soundEffect": {
+      "__uuid__": "416e0680-67ab-44ad-a2fb-71cb76cdcbd5"
     },
-    "surprisePrefab": null,
     "_id": ""
   },
   {

@@ -14,7 +14,7 @@ export default class QuestionBlock extends cc.Component {
     disabledFrame: cc.SpriteFrame = null;
 
     @property(cc.Prefab)
-    enemyPrefab: cc.Prefab = null;
+    surprisePrefab: cc.Prefab = null;
 
     private _physicManager: cc.PhysicsManager = null;
     private _animation: cc.Animation = null;
@@ -63,12 +63,12 @@ export default class QuestionBlock extends cc.Component {
             this._animation.stop();
             this.getComponent(cc.Sprite).spriteFrame = this.disabledFrame;
 
-            let enemyNode = cc.instantiate(this.enemyPrefab);
-            enemyNode.parent = cc.find("Canvas");
+            let surpriseNode = cc.instantiate(this.surprisePrefab);
+            surpriseNode.parent = cc.find("Canvas");
             
             let initialPosition = cc.v2(this.node.x, this.node.y + this.node.height * this.node.scaleY);
-            enemyNode.setPosition(initialPosition);
-            enemyNode.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 150);
+            surpriseNode.setPosition(initialPosition);
+            surpriseNode.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 150);
         }
     }
 }

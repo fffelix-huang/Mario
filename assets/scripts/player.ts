@@ -270,8 +270,13 @@ export default class Player extends cc.Component {
         if(other.node.name == "Flag") {
             this.handleGameWin();
         }
-    }
 
-    onEndContact(contact, self, other) {
+        if(other.node.group == "Item") {
+            contact.disabled = true;
+
+            if(other.node.name == "Coin") {
+                this.numScore += 30;
+            }
+        }
     }
 }

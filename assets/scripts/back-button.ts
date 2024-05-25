@@ -10,7 +10,6 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class BackButton extends cc.Component {
 
-    @property(cc.Button)
     private _button: cc.Button;
 
     onLoad() {
