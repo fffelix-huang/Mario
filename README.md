@@ -12,13 +12,13 @@
 | Sound Effects | 10% | Y |
 | UI | 10% | Y |
 
-|**Advanced Component**|**Score**|**Check**|
+| **Advanced Component** | **Score** | **Check** |
 | :---: | :---: | :---: |
-| firebase deploy | 5% | Y |
+| Firebase Deploy | 5% | Y |
 | Leaderboard | 5% | Y |
 | Offline multi-player game | 5% | N |
 | Online multi-player game | 10% | N |
-| Others [name of functions] | 1-10% | Y |
+| Others [name of functions] | 1-10% | N |
 
 ---
 
@@ -28,27 +28,27 @@
 
 #### Start Menu
 
-![start-menu](img/start-menu.png)
+![Start Menu](img/start-menu.png)
 
 You can select `start` or `leaderboard`. `start` button will take you to the level select scene, and `leaderboard` button will take you to the leaderboard scene.
 
 #### Level Select
 
-![level-select](img/level-select.png)
+![Level Select](img/level-select.png)
 
 After clicking the `start` button in the start menu, you will be taken to this scene, where you can select the level you want to play.
 
 #### Game View
 
-![game-view](img/game-view.png)
+![Game View](img/game-view.png)
 
 This is the start of the game. You can move the player with arrow keys.
 
-These are the result page when you win/lose.
+These are the result pages when you win/lose.
 
 | Win | Lose |
 | :--: | :-: |
-| ![game-win](img/game-win.png) | ![game-lose](img/game-lose.png) |
+| ![Game Win](img/game-win.png) | ![Game Lose](img/game-lose.png) |
 
 ### Basic Rules
 
@@ -68,11 +68,9 @@ These are the result page when you win/lose.
 
 #### Level Design
 
-![gravity-demo](img/gravity.png)
+![Level Design](img/level-design.png)
 
-Player can stand on the block due to gravity and collision detection.
-
-The question blocks can interact with the player. If the player hit the question block from below, it will generate either `coin`, `powerup mushroom`, or `health mushroom`.
+The level is built from combining different components.
 
 #### Player
 
@@ -86,13 +84,66 @@ There are three types of enemy.
 
 | Goomba | Flying Goomba | Flower |
 | :---: | :---: | :---: |
-| ![goomba](img/goomba.png) | ![flying-goomba](img/flying-goomba.png) | ![flower](img/flower.png) |
+| ![Goomba](img/goomba.png) | ![Flying Goomba](img/flying-goomba.png) | ![Flower](img/flower.png) |
 | Goomba will walk left and right randomly. Player can kill Goomba if you hits on its head. | Flying Goomba will fly in the air, using `cc.Animation` effect with `easeInOut` to smooth out when changing direction. Player can kill Flying Goomba if you hits on its head. | Flower will not move, however if you touch it you will die immediately, regardless of power ups. Flowers are immortal, which means you can not kill flowers. |
 
-## Advanced Component Description: 
+#### Question Blocks
 
-Describe your advanced function and how to use it.
+![Question Block](img/question-block.png)
+
+The question blocks can interact with the player. If the player hit the question block from below, it will generate either `coin`, `powerup mushroom`, or `health mushroom` item. Player can stand on the question block.
+
+![Powerup Mushroom](img/powerup-mushroom.png)
+
+After eating `powerup mushroom`, Mario switch to powerup mode and becomes bigger. It is also invincible on powerup mode.
+
+### Animation
+
+- Player has walk & jump animation on both non-powerup/powerup mode.
+- All $3$ enemies has animation. Flying Goomba will flap its wings, flower will chomp, and goomba will move around.
+
+### Sound Effects
+
+- BGM sound effect
+- Player jump & die sound effects
+- Additional sound effects:
+  - Win (levelClear) sound effect
+  - Collecting coins sound effect
+  - Stomp sound effect
+  - Kill enemies sound effect
+  - Powerup sound effect
+
+### UI
+
+![UI](ui.png)
+
+- Player life: Player dies when no life remain.
+- Player score: Score that player obtained by collecting coins or kill enemies.
+- Timer: Player loses when timer count down to $0$ seconds.
+
+### Bonus
+
+#### Firebase
+
+- Deploy to firebase page. [Game URL](https://felix-mario.web.app/).
+- Membership mechanism
+
+![Authentication](img/auth.png)
+
+You need to have an authentication to enter the game. You can either sign in if you have an account or register a new account.
+
+| Sign In | Register |
+| :-----: | :------: |
+| ![Sign In](img/signin.png) | ![Register](img/register.png) |
+
+Passwords should have length greater than $6$.
+
+#### Leaderboard
+
+![Leaderboard](img/leaderboard.png)
+
+Leaderboard will display top $7$ users with highest scores.
 
 # Firebase page link (if you deploy)
 
-    your web page URL
+[Game URL](https://felix-mario.web.app/).
