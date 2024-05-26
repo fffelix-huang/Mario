@@ -115,7 +115,7 @@ After eating `powerup mushroom`, Mario switch to powerup mode and becomes bigger
 
 ### UI
 
-![UI](ui.png)
+![UI](img/ui.png)
 
 - Player life: Player dies when no life remain.
 - Player score: Score that player obtained by collecting coins or kill enemies.
