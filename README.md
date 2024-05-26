@@ -119,7 +119,7 @@ After eating `powerup mushroom`, Mario switch to powerup mode and becomes bigger
 
 #### Firebase
 
-- Deploy to firebase page. [Game URL](https://felix-mario.web.app/).
+- Deploy to firebase page. [Game URL](https://felix-mario.web.app/)
 - Membership mechanism
 
 ![Authentication](img/auth.png)
@@ -130,7 +130,7 @@ You need to have an authentication to enter the game. You can either sign in if 
 | :-----: | :------: |
 | ![Sign In](img/signin.png) | ![Register](img/register.png) |
 
-Passwords should have length greater than $6$.
+Passwords should have length greater than $6$. I also check validation. If email format or password is invalid, the `sign in` or `register` will not be clickable.
 
 #### Leaderboard
 
