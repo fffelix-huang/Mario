@@ -52,14 +52,6 @@ These are the result pages when you win/lose.
 
 ### Basic Rules
 
-1. World map : [xxxx]
-2. Player : [xxxx]
-3. Enemies : [xxxx]
-4. Question Blocks : [xxxx]
-5. Animations : [xxxx]
-6. Sound effects : [xxxx]
-7. UI : [xxxx]
-
 #### World Map
 
 - There are two levels in total.
@@ -101,6 +93,8 @@ After eating `powerup mushroom`, Mario switch to powerup mode and becomes bigger
 
 - Player has walk & jump animation on both non-powerup/powerup mode.
 - All $3$ enemies has animation. Flying Goomba will flap its wings, flower will chomp, and goomba will move around.
+- Coin spinning animation.
+- Question block animation.
 
 ### Sound Effects
 
@@ -146,4 +140,4 @@ Leaderboard will display top $7$ users with highest scores.
 
 # Firebase page link (if you deploy)
 
-[Game URL](https://felix-mario.web.app/).
+[Game URL](https://felix-mario.web.app/)
